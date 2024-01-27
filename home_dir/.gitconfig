@@ -1,0 +1,76 @@
+[core]
+  excludesfile = /Users/vutoff/.gitignore_global
+  editor = nvim
+  pager = delta
+[user]
+  name = Iliyan Vutoff
+  email = iliyan@dext.com
+  signingkey = 990577D8
+[commit]
+  template = /Users/vutoff/.stCommitMsg
+  gpgsign = true
+[credential]
+  helper = osxkeychain
+[alias]
+  lol = log --graph --decorate --pretty=oneline --abbrev-commit
+  lg = log --oneline --decorate --all --graph
+  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  graph = log --graph --abbrev-commit --decorate --date=relative --full-history --format=format:'%C(bold blue)%h%C(reset) %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold blue)%an%C(reset)%C(bold yellow)%d%C(reset)'
+  pr = "!funct() { open \"`git web-url`/pull/`git pr-number $1`\" ;}; funct"
+  co = checkout
+  nb = checkout master -b
+  diverges=!sh -c 'git rev-list --boundary $1...$2 | grep ^- | cut -c2-'
+  cp = cherry-pick
+  merge-commits = "!funct() { git log --merges --reverse --oneline --ancestry-path $1..origin | grep \"Merge branch\";  }; funct"
+  pr-number = "!funct() { git merge-commits $1 | head -n1 | sed -n \"s/^.*Merge branch #\\\\s*\\\\([0-9]*\\\\).*$/\\\\1/p\"; }; funct"
+  web-url = "!funct() { git config remote.origin.url | sed -e\"s/git@/https:\\/\\//\" -e\"s/\\.git$//\" | sed -E \"s/(\\/\\/[^:]*):/\\1\\//\"; }; funct"
+[push]
+  default = simple
+[rebase]
+  autosquash = true
+
+[difftool "sourcetree"]
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path =
+
+[difftool]
+  prompt = true
+[filter "lfs"]
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+[grep]
+  extendRegexp = true
+  lineNumber = true
+[init]
+  defaultBranch = master
+
+[interactive]
+  diffFilter = delta --color-only --features=interactive
+
+[delta]
+  features = decorations
+  side-by-side = true
+  line-numbers-left-format = "{nm:^4}⋮"
+  line-numbers-right-format = "⋮{np:^4}⋮"
+  minus-style       = 'syntax bold "#593C46"'
+  minus-emph-style  = bold black "#AE3858"
+  minus-empty-line-marker-style = normal "#AE3858"
+    # plus-style = 'bold normal #00582C'
+    # plus-empty-line-marker-style  = normal "#00582C"
+  plus-style  = syntax "#104530"
+    # minus-empty-line-marker-style = normal green # "#E989A9" #"#3f0001"
+
+[delta "interactive"]
+  keep-plus-minus-markers = false
+
+[delta "decorations"]
+  commit-decoration-style = blue ol
+  commit-style = raw
+  file-style = omit
+  hunk-header-decoration-style = ul ol # blue box
+  hunk-header-file-style = bold yellow
+  hunk-header-line-number-style = "#067a00"
+  hunk-header-style = file syntax
+    # minus-empty-line-marker-style = normal green # "#E989A9" #"#3f0001"
