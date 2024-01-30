@@ -1,10 +1,8 @@
 require('nvim-treesitter.configs').setup {
   ensure_installed = {
     'bash',
-    'css',
     'dockerfile',
     'go',
-    'graphql',
     'html',
     'javascript',
     'json',
@@ -12,15 +10,12 @@ require('nvim-treesitter.configs').setup {
     'markdown',
     'python',
     'ruby',
-    'scss',
     'sql',
     'toml',
-    'tsx',
-    'typescript',
     'terraform',
     'yaml',
   },
-  sync_install = false,
+  sync_install = true,
   auto_install = true,
   highlight = {
     enable = true,
