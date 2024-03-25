@@ -3,7 +3,7 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH:$HOME/.pyenv/bin"
 export PATH=/opt/homebrew/bin:$PATH
 export PATH=/opt/homebrew/sbin:$PATH
 export PATH=/Users/iliyan/bin:$PATH
-
+export PATH=$PATH:$HOME/.bin
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 eval "$(scmpuff init -s)"
