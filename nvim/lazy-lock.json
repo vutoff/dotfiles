@@ -5,6 +5,7 @@
   "asyncomplete-lsp.vim": { "branch": "master", "commit": "cc5247bc268fb2c79d8b127bd772514554efb3ee" },
   "asyncomplete.vim": { "branch": "master", "commit": "016590d2ca73cefe45712430e319a0ef004e2215" },
   "blamer.nvim": { "branch": "master", "commit": "e0d43c11697300eb68f00d69df8b87deb0bf52dc" },
+  "conform.nvim": { "branch": "master", "commit": "f9523f75134614fc0eff29c2377ed36603a1b0aa" },
   "copilot.vim": { "branch": "release", "commit": "22fd9542e3c47552abab5e685fefd760e4f405b2" },
   "delimitmate": { "branch": "master", "commit": "537a1da0fa5eeb88640425c37e545af933c56e1b" },
   "dockerfile.vim": { "branch": "master", "commit": "2a31e6bcea5977209c05c728c4253d82fd873c82" },
