@@ -44,4 +44,4 @@ imap('<S-Down>', '<Esc>:m+<CR>')
 nmap('<Leader>rc', ':luafile ~/.config/nvim/init.lua<CR>')
 
 -- Window Resizer --
-nmap('<C-t>', ':WinResizerStartResize<CR>')
+nmap('<M-t>', ':WinResizerStartResize<CR>')

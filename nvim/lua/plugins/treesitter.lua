@@ -14,12 +14,13 @@ require('nvim-treesitter.configs').setup {
     'toml',
     'terraform',
     'yaml',
+    'helm'
   },
   sync_install = true,
   auto_install = true,
   highlight = {
     enable = true,
-    additional_vim_regex_highlighting = true,
+    additional_vim_regex_highlighting = false,
     disable = { "gitcommit"}
   },
   indent = {
