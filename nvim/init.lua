@@ -10,6 +10,7 @@ vim.opt.number = true
 vim.opt.hlsearch = true
 vim.opt.ignorecase = true
 vim.opt.incsearch = true
+vim.opt_local.colorcolumn = "80"
 
 require 'plugins'
 require 'lsp'
