@@ -1,0 +1,8 @@
+#!/bin/bash
+
+function _start-ssm-session() {
+    target=$(aws ec2 describe-instances --query "Reservations[].Instances[].{Name: Tags[?Key==\`Name\`].Value | [0], InstanceId: InstanceId}" --output text | fzf --layout=reverse --info=inline --ansi | awk '{print $1}')
+    aws ssm start-session --target "$target"
+}
+
+bash -c "$(declare -f _start-ssm-session); _start-ssm-session"
