@@ -29,16 +29,20 @@ nmap('<Leader>r', '<Plug>SlimeLineSend')
 vmap('<Leader>e', '<Plug>SlimeRegionSend')
 
 -- FZF --
-nmap('<C-p>', ":FzfLua files<CR>")
-nmap('<C-f>', ':FzfLua grep_project<CR>')
-nmap('<C-c>', ':BCommits<CR>')
-nmap('<C-w>', ':Windows<CR>')
+nmap('<C-p>', ":Telescope find_files<CR>")
+nmap('<C-f>', ':Telescope grep_string<CR>')
+nmap('<C-w>', ':Telescope live_grep<CR>')
+nmap('<C-c>', ':Telescope git_bcommits<CR>')
 
 -- Move lines --
 nmap('<S-Up>', ':m-2<CR>')
 nmap('<S-Down>', ':m+<CR>')
 imap('<S-Up>', '<Esc>:m-2<CR>')
 imap('<S-Down>', '<Esc>:m+<CR>')
+
+--- Move selection ---
+-- vnoremap('J', ':m >+1<CR>gv=gv')
+-- vnoremap('K', ':m <-2<CR>gv=gv')
 
 -- Reload config --
 nmap('<Leader>rc', ':luafile ~/.config/nvim/init.lua<CR>')

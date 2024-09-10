@@ -96,6 +96,20 @@ require("lazy").setup({
   },
 },
 {
+  "nvim-telescope/telescope.nvim",
+    branch = "0.1.x",
+    dependencies = {
+      "nvim-lua/popup.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+    },
+    config = function()
+      local telescope = require("telescope")
+      local actions = require("telescope.actions")
+    end
+},
+{
   "NeogitOrg/neogit",
   dependencies = {
     "nvim-lua/plenary.nvim",         -- required
@@ -107,4 +121,18 @@ require("lazy").setup({
   },
   config = true
 },
+{
+  'EvWilson/slimux.nvim',
+  config = function()
+    local slimux = require('slimux')
+    slimux.setup({
+      target_socket = slimux.get_tmux_socket(),
+      target_pane = string.format('%s.2', slimux.get_tmux_window()),
+    })
+    vim.keymap.set('v', '<leader>ht', slimux.send_highlighted_text,
+      { desc = 'Send currently highlighted text to configured tmux pane' })
+    vim.keymap.set('n', '<leader>sl', slimux.send_paragraph_text,
+      { desc = 'Send paragraph under cursor to configured tmux pane' })
+  end
+}
 })

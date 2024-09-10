@@ -38,18 +38,18 @@ vim.g.NERDAltDelims_java = 1
 vim.g.NERDCommentEmptyLines = 1
 vim.g.NERDTrimTrailingWhitespace = 1
 
-vim.g.NERDTreeMinimalUI = 0
-vim.g.NERDTreeDirArrows = 1
-vim.g.NERDTreeWinSize = 30
-vim.g.NERDTreeAutoDeleteBuffer = 1
-vim.g.NERDTreeAutoCenter = 1
-vim.g.NERDTreeShowLineNumbers = 0
-vim.g.NERDTreeShowFiles = 1
-vim.g.NERDTreeShowFilesSort = 1
-vim.g.NERDTreeShowHidden = 0
+-- vim.g.NERDTreeMinimalUI = 0
+-- vim.g.NERDTreeDirArrows = 1
+-- vim.g.NERDTreeWinSize = 30
+-- vim.g.NERDTreeAutoDeleteBuffer = 1
+-- vim.g.NERDTreeAutoCenter = 1
+-- vim.g.NERDTreeShowLineNumbers = 0
+-- vim.g.NERDTreeShowFiles = 1
+-- vim.g.NERDTreeShowFilesSort = 1
+-- vim.g.NERDTreeShowHidden = 0
 
-vim.g.WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ' '
-vim.g.DevIconsDefaultFolderOpenSymbol = ' '
+-- vim.g.WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ' '
+-- vim.g.DevIconsDefaultFolderOpenSymbol = ' '
 
 -- Better Whitespace
 vim.g.better_whitespace_enabled = 1
