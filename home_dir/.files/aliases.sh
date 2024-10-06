@@ -4,10 +4,14 @@ export PATH=/opt/homebrew/bin:$PATH
 export PATH=/opt/homebrew/sbin:$PATH
 export PATH=/Users/iliyan/bin:$PATH
 export PATH=$PATH:$HOME/.bin
+
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 eval "$(scmpuff init -s)"
 eval "$(rbenv init -)"
+eval "$(fzf --zsh)"
+eval "$(zoxide init zsh --cmd cd)"
+
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
@@ -22,6 +26,8 @@ alias kctl="kubectl"
 
 alias tui="taskwarrior-tui"
 
+# alias cd="z"
+
 # Fuzzy CD
 fd() {
  local dir
@@ -32,3 +38,15 @@ fd() {
 
 # CTags
 alias ctags="`brew --prefix`/bin/ctags"
+
+# AWS
+function aws-profile() {
+  case $1 in
+    "")
+      export AWS_PROFILE=$(sed -n "s/\[profile \(.*\)\]/\1/gp" ~/.aws/config | fzf)
+      ;;
+    *)
+      export AWS_PROFILE=$1
+      ;;
+  esac
+}

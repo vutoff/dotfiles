@@ -15,7 +15,7 @@ function av() {
     LOGIN_URL=$($AWS_VAULT_BIN login "${LOGIN_PROFILE}" --stdout)
     ENCODED_URL="${LOGIN_URL//&/%26}"
     URI_HANDLER="ext+container:name=${LOGIN_PROFILE}&url=${ENCODED_URL}"
-    "${FIREFOX}" "${FIREFOX_OPTS}" "${URI_HANDLER}"
+    "${FIREFOX}" "${FIREFOX_OPTS}" "${URI_HANDLER}" &
   else
     $(which aws-vault) $1  ${@:2}
   fi
