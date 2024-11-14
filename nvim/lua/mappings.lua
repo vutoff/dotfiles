@@ -40,10 +40,6 @@ nmap('<S-Down>', ':m+<CR>')
 imap('<S-Up>', '<Esc>:m-2<CR>')
 imap('<S-Down>', '<Esc>:m+<CR>')
 
---- Move selection ---
--- vnoremap('J', ':m >+1<CR>gv=gv')
--- vnoremap('K', ':m <-2<CR>gv=gv')
-
 -- Reload config --
 nmap('<Leader>rc', ':luafile ~/.config/nvim/init.lua<CR>')
 

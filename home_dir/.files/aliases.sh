@@ -5,6 +5,8 @@ export PATH=/opt/homebrew/sbin:$PATH
 export PATH=/Users/iliyan/bin:$PATH
 export PATH=$PATH:$HOME/.bin
 
+export EDITOR=nvim
+
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 eval "$(scmpuff init -s)"

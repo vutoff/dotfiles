@@ -134,5 +134,7 @@ require("lazy").setup({
     vim.keymap.set('n', '<leader>sl', slimux.send_paragraph_text,
       { desc = 'Send paragraph under cursor to configured tmux pane' })
   end
-}
+},
+{'echasnovski/mini.move', version = '*'}
+
 })
