@@ -8,10 +8,10 @@ require('mini.move').setup({
     up = '<M-Up>',
 
     -- Move current line in Normal mode
-    line_left = '<M-Left>',
-    line_right = '<M-Right>',
-    line_down = '<M-Down>',
-    line_up = '<M-Up>',
+    line_left = '<M-S-Left>',
+    line_right = '<M-S-Right>',
+    line_down = '<M-S-Down>',
+    line_up = '<M-S-Up>',
   },
 
   -- Options which control moving behavior
