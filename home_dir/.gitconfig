@@ -1,5 +1,5 @@
 [core]
-  excludesfile = /Users/vutoff/.gitignore_global
+  excludesfile = ~/.gitignore_global
   editor = nvim
   pager = delta
 [user]
@@ -7,7 +7,7 @@
   email = iliyan@dext.com
   signingkey = 990577D8
 [commit]
-  template = /Users/vutoff/.stCommitMsg
+  template = ~/.stCommitMsg
   gpgsign = true
 [credential]
   helper = osxkeychain

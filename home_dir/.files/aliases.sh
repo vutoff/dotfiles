@@ -1,23 +1,60 @@
-export PACKER_PLUGIN_PATH="$HOME/.files/packer_plugins/"
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH:$HOME/.pyenv/bin"
-export PATH=/opt/homebrew/bin:$PATH
-export PATH=/opt/homebrew/sbin:$PATH
-export PATH=/Users/iliyan/bin:$PATH
-export PATH=$PATH:$HOME/.bin
+# PATH and env vars are in ~/.zshenv
 
-export EDITOR=nvim
+# --- Lazy-loaded tools (deferred until first use) ---
 
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-eval "$(scmpuff init -s)"
-eval "$(rbenv init -)"
-eval "$(fzf --zsh)"
-eval "$(zoxide init zsh --cmd cd)"
+# Pyenv: lazy-load on first call to pyenv or python
+pyenv() {
+  unfunction pyenv python python3 pip pip3 2>/dev/null
+  eval "$(command pyenv init -)"
+  eval "$(command pyenv virtualenv-init -)"
+  pyenv "$@"
+}
+python()  { unfunction python pyenv python3 pip pip3 2>/dev/null; eval "$(command pyenv init -)"; eval "$(command pyenv virtualenv-init -)"; python "$@" }
+python3() { unfunction python pyenv python3 pip pip3 2>/dev/null; eval "$(command pyenv init -)"; eval "$(command pyenv virtualenv-init -)"; python3 "$@" }
+pip()     { unfunction python pyenv python3 pip pip3 2>/dev/null; eval "$(command pyenv init -)"; eval "$(command pyenv virtualenv-init -)"; pip "$@" }
+pip3()    { unfunction python pyenv python3 pip pip3 2>/dev/null; eval "$(command pyenv init -)"; eval "$(command pyenv virtualenv-init -)"; pip3 "$@" }
 
+# Rbenv: lazy-load on first call to rbenv or ruby
+rbenv() {
+  unfunction rbenv ruby gem bundle 2>/dev/null
+  eval "$(command rbenv init -)"
+  rbenv "$@"
+}
+ruby()   { unfunction rbenv ruby gem bundle 2>/dev/null; eval "$(command rbenv init -)"; ruby "$@" }
+gem()    { unfunction rbenv ruby gem bundle 2>/dev/null; eval "$(command rbenv init -)"; gem "$@" }
+bundle() { unfunction rbenv ruby gem bundle 2>/dev/null; eval "$(command rbenv init -)"; bundle "$@" }
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+# Scmpuff: lazy-load on first call
+scmpuff() {
+  unfunction scmpuff 2>/dev/null
+  eval "$(command scmpuff init -s)"
+  scmpuff "$@"
+}
+
+# NVM: lazy-load on first call to nvm/node/npm/npx
+_load_nvm() {
+  unfunction nvm node npm npx yarn pnpm 2>/dev/null
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+}
+nvm()  { _load_nvm; nvm "$@" }
+node() { _load_nvm; node "$@" }
+npm()  { _load_nvm; npm "$@" }
+npx()  { _load_nvm; npx "$@" }
+yarn() { _load_nvm; yarn "$@" }
+pnpm() { _load_nvm; pnpm "$@" }
+
+# --- Eager but fast tools (cached) ---
+_zsh_eval_cache() {
+  local cache_file="${ZSH_CACHE_DIR:-$HOME/.cache}/zsh_eval_${1//[^a-zA-Z0-9]/_}.zsh"
+  if [[ ! -f "$cache_file" ]] || [[ "$(command -v "$1")" -nt "$cache_file" ]]; then
+    eval "${@:2}" > "$cache_file" 2>/dev/null
+  fi
+  source "$cache_file"
+}
+
+_zsh_eval_cache zoxide "zoxide init zsh --cmd cd"
+_zsh_eval_cache fzf "fzf --zsh"
 # GitHub
 alias weather='curl -s wttr.in/Sofia'
 
@@ -39,7 +76,7 @@ fd() {
 }
 
 # CTags
-alias ctags="`brew --prefix`/bin/ctags"
+alias ctags="/opt/homebrew/bin/ctags"
 
 # AWS
 function aws-profile() {

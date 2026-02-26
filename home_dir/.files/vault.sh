@@ -1,9 +1,5 @@
 #!/bin/bash
-unset VAULT_ADDR
-unset VAULT_TOKEN
-
 export VAULT_ADDR=https://vault.dext.tools
-
 _TOKEN_FILE="$HOME/.vault-token"
 
 # Auth to vault

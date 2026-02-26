@@ -1,6 +1,4 @@
-# [ -f $HOMEBREW_PREFIX/share/forgit/forgit.plugin.zsh ] && source $HOMEBREW_PREFIX/share/forgit/forgit.plugin.zsh
-
-export FORGIT_PAGER='delta --side-by-side -w ${FZF_PREVIEW_COLUMNS:-$COLUMNS}'
+# FORGIT_PAGER is set in ~/.zshenv
 
 alias gds='git branch -D $(git branch | grep -E squash_ | sed "s/ //g")'
 alias squash_branch='~/.bin/squash_branch.sh'
