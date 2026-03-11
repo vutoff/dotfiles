@@ -1,13 +1,13 @@
 [core]
-  excludesfile = ~/.gitignore_global
+	excludesfile = /Users/iliyan/.gitignore_global
   editor = nvim
   pager = delta
 [user]
-  name = Iliyan Vutoff
-  email = iliyan@dext.com
+	name = Iliyan Vutov
+	email = iliyan@dext.com
   signingkey = 990577D8
 [commit]
-  template = ~/.stCommitMsg
+	template = ~/.stCommitMsg
   gpgsign = true
 [credential]
   helper = osxkeychain
@@ -30,8 +30,8 @@
   autosquash = true
 
 [difftool "sourcetree"]
-  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-  path =
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
 
 [difftool]
   prompt = true
@@ -74,3 +74,6 @@
   hunk-header-line-number-style = "#067a00"
   hunk-header-style = file syntax
     # minus-empty-line-marker-style = normal green # "#E989A9" #"#3f0001"
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
