@@ -11,13 +11,13 @@ vim.opt.expandtab = true
 vim.opt.splitright = true
 
 vim.g.indentLine_color_term = 239
-vim.g.indentLine_char_list = {'|', '¦', '┆', '┊'}
+vim.g.indentLine_char_list = { "|", "¦", "┆", "┊" }
 
 vim.g.vim_json_syntax_conceal = 0
 
-vim.api.nvim_create_autocmd({'BufEnter'}, { pattern = '*', command = 'EnableStripWhitespaceOnSave' })
+vim.api.nvim_create_autocmd({ "BufEnter" }, { pattern = "*", command = "EnableStripWhitespaceOnSave" })
 
-vim.opt.backspace = { 'indent', 'eol', 'start' }
+vim.opt.backspace = { "indent", "eol", "start" }
 
 -- Terraform --
 vim.g.terraform_fmt_on_save = 1
@@ -27,9 +27,9 @@ vim.g.terraform_commentstring = "# %s"
 
 -- vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, { pattern = '*', command='TSBufEnable highlight' })
 
-vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, { pattern = '*.tfvars', command = 'setl filetype=terraform' })
-vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, { pattern = '*.tf', command = 'setl filetype=terraform' })
-vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, { pattern = '*.hcl', command = 'setl filetype=terraform' })
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, { pattern = "*.tfvars", command = "setl filetype=terraform" })
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, { pattern = "*.tf", command = "setl filetype=terraform" })
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, { pattern = "*.hcl", command = "setl filetype=terraform" })
 
 -- NERD Commeter --
 vim.g.NERDSpaceDelims = 1
@@ -56,7 +56,7 @@ vim.g.better_whitespace_enabled = 1
 vim.g.strip_whitespace_on_save = 1
 vim.g.strip_whitespace_confirm = 0
 
-vim.api.nvim_create_autocmd({ 'BufEnter' },{ pattern = '*.tf', command = 'EnableStripWhitespaceOnSave' })
+vim.api.nvim_create_autocmd({ "BufEnter" }, { pattern = "*.tf", command = "EnableStripWhitespaceOnSave" })
 
 -- Slimux --
 vim.g.slime_target = "tmux"
@@ -72,4 +72,3 @@ vim.g.gitgutter_override_sign_column_highlight = 0
 -- Windows resizer --
 vim.g.winresizer_enabled = 1
 vim.g.winresizer_gui_enable = 0
-

@@ -1,6 +1,8 @@
 -- Generic Options --
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+-- These must stay ahead of `config.lazy`: the leader is baked into plugin
+-- keymaps at spec time, and airline reads its globals when it loads.
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 -- vim.opt.guifont = { "MesloGL Nerd Font", "h14" }
 vim.g.airline_powerline_fonts = 1
 
@@ -12,7 +14,7 @@ vim.opt.ignorecase = true
 vim.opt.incsearch = true
 vim.opt_local.colorcolumn = "80"
 
-require 'plugins'
-require 'lsp'
-require 'options'
-require 'mappings'
+require("config.lazy")
+require("config.lsp")
+require("config.options")
+require("config.mappings")

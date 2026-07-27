@@ -31,3 +31,7 @@ tsh-auth-ssh-staging() {
 tsh-auth-ssh-demo() {
   tsh login --proxy=teleport.prod.rbank-int.com:443 --request-roles=ssh_demo_root
 }
+
+tsh-auth-ssh-infrastructure() {
+  tsh login --proxy=teleport.prod.rbank-int.com:443 --request-roles=ssh_infrastructure_root
+}

@@ -1,5 +1,10 @@
 # PATH and env vars are in ~/.zshenv
 
+alias elevate='PrivilegesCLI --add "Requested from CLI"'
+
+# --- Eager-loaded tools ---
+eval "$(command scmpuff init -s)"
+
 # --- Lazy-loaded tools (deferred until first use) ---
 
 # Pyenv: lazy-load on first call to pyenv or python
@@ -23,13 +28,6 @@ rbenv() {
 ruby()   { unfunction rbenv ruby gem bundle 2>/dev/null; eval "$(command rbenv init -)"; ruby "$@" }
 gem()    { unfunction rbenv ruby gem bundle 2>/dev/null; eval "$(command rbenv init -)"; gem "$@" }
 bundle() { unfunction rbenv ruby gem bundle 2>/dev/null; eval "$(command rbenv init -)"; bundle "$@" }
-
-# Scmpuff: lazy-load on first call
-scmpuff() {
-  unfunction scmpuff 2>/dev/null
-  eval "$(command scmpuff init -s)"
-  scmpuff "$@"
-}
 
 # NVM: lazy-load on first call to nvm/node/npm/npx
 _load_nvm() {
