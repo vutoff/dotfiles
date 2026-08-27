@@ -8,7 +8,7 @@ export PACKER_PLUGIN_PATH="$HOME/.files/packer_plugins/"
 export NVM_DIR="$HOME/.nvm"
 
 export FZF_DEFAULT_OPTS='--height=70% --preview="cat {}" --preview-window=right:60%:wrap'
-export FZF_DEFAULT_COMMAND="/usr/local/bin/rg --files"
+export FZF_DEFAULT_COMMAND="rg --files"
 export FZF_CTRL_T_COMMAND='$FZF_DEFAULT_COMMAND'
 
 export FORGIT_PAGER='delta --side-by-side -w ${FZF_PREVIEW_COLUMNS:-$COLUMNS}'
@@ -25,8 +25,6 @@ path=(
   ${KREW_ROOT:-$HOME/.krew}/bin
   $HOME/.pyenv/bin
   "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-  /Applications/SnowSQL.app/Contents/MacOS
-  $HOME/Projects_Git/go/bin
   $HOME/tmp/sessionmanager-bundle/bin
   /usr/local/bin
   /usr/bin
