@@ -1,58 +1,37 @@
-# PATH and env vars are in ~/.zshenv
+export PACKER_PLUGIN_PATH="$HOME/.files/packer_plugins/"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH:$HOME/.pyenv/bin"
+export PATH=/opt/homebrew/bin:$PATH
+export PATH=/opt/homebrew/sbin:$PATH
+export PATH=$PATH:$HOME/.bin
+export PATH=$PATH:$HOME/.cargo/bin
+
+export EDITOR=nvim
 
 alias elevate='PrivilegesCLI --add "Requested from CLI"'
 
-# --- Eager-loaded tools ---
-eval "$(command scmpuff init -s)"
+# --no-rehash skips shim regeneration at startup (the slow part). Shims are
+# still on PATH and versions resolve as usual; run `pyenv rehash` / `rbenv
+# rehash` after installing a new tool if its shim is missing.
+eval "$(pyenv init - --no-rehash zsh)"
+eval "$(pyenv virtualenv-init -)"
+eval "$(rbenv init - --no-rehash zsh)"
+eval "$(scmpuff init -s)"
+eval "$(fzf --zsh)"
+eval "$(zoxide init zsh --cmd cd)"
 
-# --- Lazy-loaded tools (deferred until first use) ---
+# nvm: --no-use skips the automatic version resolution on startup (~700ms).
+# The newest installed node goes on PATH directly; `nvm use X` still works.
+export NVM_DIR="$HOME/.nvm"
+if [ -s "/opt/homebrew/opt/nvm/nvm.sh" ]; then
+    \. "/opt/homebrew/opt/nvm/nvm.sh" --no-use
+    () {
+        local -a _nodes
+        _nodes=("$NVM_DIR"/versions/node/*/bin(Nn/))
+        (( $#_nodes )) && path=("${_nodes[-1]}" $path)
+    }
+fi
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
-# Pyenv: lazy-load on first call to pyenv or python
-pyenv() {
-  unfunction pyenv python python3 pip pip3 2>/dev/null
-  eval "$(command pyenv init -)"
-  eval "$(command pyenv virtualenv-init -)"
-  pyenv "$@"
-}
-python()  { unfunction python pyenv python3 pip pip3 2>/dev/null; eval "$(command pyenv init -)"; eval "$(command pyenv virtualenv-init -)"; python "$@" }
-python3() { unfunction python pyenv python3 pip pip3 2>/dev/null; eval "$(command pyenv init -)"; eval "$(command pyenv virtualenv-init -)"; python3 "$@" }
-pip()     { unfunction python pyenv python3 pip pip3 2>/dev/null; eval "$(command pyenv init -)"; eval "$(command pyenv virtualenv-init -)"; pip "$@" }
-pip3()    { unfunction python pyenv python3 pip pip3 2>/dev/null; eval "$(command pyenv init -)"; eval "$(command pyenv virtualenv-init -)"; pip3 "$@" }
-
-# Rbenv: lazy-load on first call to rbenv or ruby
-rbenv() {
-  unfunction rbenv ruby gem bundle 2>/dev/null
-  eval "$(command rbenv init -)"
-  rbenv "$@"
-}
-ruby()   { unfunction rbenv ruby gem bundle 2>/dev/null; eval "$(command rbenv init -)"; ruby "$@" }
-gem()    { unfunction rbenv ruby gem bundle 2>/dev/null; eval "$(command rbenv init -)"; gem "$@" }
-bundle() { unfunction rbenv ruby gem bundle 2>/dev/null; eval "$(command rbenv init -)"; bundle "$@" }
-
-# NVM: lazy-load on first call to nvm/node/npm/npx
-_load_nvm() {
-  unfunction nvm node npm npx yarn pnpm 2>/dev/null
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
-}
-nvm()  { _load_nvm; nvm "$@" }
-node() { _load_nvm; node "$@" }
-npm()  { _load_nvm; npm "$@" }
-npx()  { _load_nvm; npx "$@" }
-yarn() { _load_nvm; yarn "$@" }
-pnpm() { _load_nvm; pnpm "$@" }
-
-# --- Eager but fast tools (cached) ---
-_zsh_eval_cache() {
-  local cache_file="${ZSH_CACHE_DIR:-$HOME/.cache}/zsh_eval_${1//[^a-zA-Z0-9]/_}.zsh"
-  if [[ ! -f "$cache_file" ]] || [[ "$(command -v "$1")" -nt "$cache_file" ]]; then
-    eval "${@:2}" > "$cache_file" 2>/dev/null
-  fi
-  source "$cache_file"
-}
-
-_zsh_eval_cache zoxide "zoxide init zsh --cmd cd"
-_zsh_eval_cache fzf "fzf --zsh"
 # GitHub
 alias weather='curl -s wttr.in/Sofia'
 
@@ -87,4 +66,3 @@ function aws-profile() {
       ;;
   esac
 }
-
