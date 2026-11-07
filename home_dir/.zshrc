@@ -15,7 +15,7 @@ ZSH_DISABLE_COMPFIX=false
 COMPLETION_WAITING_DOTS="true"
 
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(aws git macos ssh-agent zsh-syntax-highlighting iterm2 terraform kubectl git-auto-fetch git-extras github brew ansible zsh-autosuggestions genpass fzf-tab)
+plugins=(aws git macos ssh-agent zsh-syntax-highlighting iterm2 terraform kubectl git-auto-fetch git-extras gh brew ansible zsh-autosuggestions genpass fzf-tab)
 
 source $ZSH/oh-my-zsh.sh
 

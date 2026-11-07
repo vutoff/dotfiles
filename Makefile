@@ -1,4 +1,4 @@
-.PHONY: all homebrew zsh neovim github
+.PHONY: all homebrew zsh neovim ghostty github
 
 DOTFILES_DIR := $(shell pwd)
 
@@ -7,6 +7,7 @@ all:
 	$(MAKE) homebrew
 	$(MAKE) zsh
 	$(MAKE) neovim
+	$(MAKE) ghostty
 	$(MAKE) github
 
 homebrew:
@@ -26,6 +27,12 @@ zsh:
 	else \
 		echo "  oh-my-zsh already installed, skipping."; \
 	fi
+	@echo "Installing oh-my-zsh custom plugins..."
+	@for repo in zsh-users/zsh-syntax-highlighting zsh-users/zsh-autosuggestions Aloxaf/fzf-tab; do \
+		dest="$$HOME/.oh-my-zsh/custom/plugins/$$(basename $$repo)"; \
+		if [ ! -d "$$dest" ]; then git clone --depth=1 https://github.com/$$repo "$$dest"; \
+		else echo "  $$(basename $$repo) already installed, skipping."; fi; \
+	done
 	@echo "Linking zsh configuration..."
 	ln -sf $(DOTFILES_DIR)/home_dir/.zshrc ~/
 	ln -sf $(DOTFILES_DIR)/home_dir/.zshenv ~/
@@ -49,6 +56,11 @@ neovim:
 	@echo "Linking nvim configuration..."
 	mkdir -p ~/.config
 	ln -sfn $(DOTFILES_DIR)/nvim ~/.config/nvim
+
+ghostty:
+	@echo "Linking ghostty configuration..."
+	mkdir -p ~/.config/ghostty
+	ln -sf $(DOTFILES_DIR)/home_dir/ghostty_config ~/.config/ghostty/config
 
 github:
 	@echo "Configuring github..."
